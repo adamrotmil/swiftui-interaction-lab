@@ -9,12 +9,6 @@ let package = Package(
         .iOS(.v17),
         .macOS(.v14)
     ],
-    products: [
-        .library(
-            name: "InteractionLabLib",
-            targets: ["InteractionLab"]
-        )
-    ],
     targets: [
         .executableTarget(
             name: "InteractionLab",
