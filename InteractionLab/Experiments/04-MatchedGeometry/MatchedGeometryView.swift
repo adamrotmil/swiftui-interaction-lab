@@ -9,7 +9,7 @@ struct MatchedGeometryView: View {
     @Namespace private var heroNamespace
     @State private var selectedItem: DestinationItem?
 
-    let items: [DestinationItem] = [
+    private let items: [DestinationItem] = [
         DestinationItem(title: "Mountains", color: .blue, icon: "mountain.2.fill", subtitle: "Explore alpine terrain and rocky peaks"),
         DestinationItem(title: "Ocean", color: .cyan, icon: "water.waves", subtitle: "Deep sea adventures and coastal views"),
         DestinationItem(title: "Forest", color: .green, icon: "tree.fill", subtitle: "Dense woodland trails and wildlife"),
