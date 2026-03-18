@@ -180,7 +180,7 @@ struct DeviceFrameView<Content: View>: View {
     private func macFrame(size: CGSize, scale: CGFloat) -> some View {
         let titleBarHeight: CGFloat = 38 * scale
 
-        VStack(spacing: 0) {
+        return VStack(spacing: 0) {
             // Title bar
             ZStack {
                 Rectangle()
