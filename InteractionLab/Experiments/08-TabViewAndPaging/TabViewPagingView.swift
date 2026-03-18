@@ -45,7 +45,7 @@ struct TabViewPagingView: View {
             StandardTabDemo()
         }
         .padding()
-        .background(Color(.systemGray6).opacity(0.5))
+        .background(Color(white: 0.95).opacity(0.5))
         .clipShape(RoundedRectangle(cornerRadius: 12))
     }
 
@@ -62,7 +62,7 @@ struct TabViewPagingView: View {
             OnboardingCarousel()
         }
         .padding()
-        .background(Color(.systemGray6).opacity(0.5))
+        .background(Color(white: 0.95).opacity(0.5))
         .clipShape(RoundedRectangle(cornerRadius: 12))
     }
 
@@ -79,7 +79,7 @@ struct TabViewPagingView: View {
             ProgrammaticTabDemo()
         }
         .padding()
-        .background(Color(.systemGray6).opacity(0.5))
+        .background(Color(white: 0.95).opacity(0.5))
         .clipShape(RoundedRectangle(cornerRadius: 12))
     }
 }
@@ -188,7 +188,9 @@ private struct OnboardingCarousel: View {
                     .tag(index)
                 }
             }
+            #if os(iOS)
             .tabViewStyle(.page(indexDisplayMode: .always))
+            #endif
             .frame(height: 220)
 
             // Navigation buttons
@@ -272,7 +274,9 @@ private struct ProgrammaticTabDemo: View {
                         .tag(index)
                 }
             }
+            #if os(iOS)
             .tabViewStyle(.page(indexDisplayMode: .never))
+            #endif
             .frame(height: 150)
             .clipShape(RoundedRectangle(cornerRadius: 12))
 
