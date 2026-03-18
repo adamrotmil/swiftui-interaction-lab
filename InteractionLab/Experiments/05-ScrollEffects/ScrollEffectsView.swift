@@ -158,7 +158,7 @@ struct ScrollEffectsView: View {
             .frame(height: 220)
         }
         .padding()
-        .background(Color(.systemGray6).opacity(0.5))
+        .background(Color(white: 0.95).opacity(0.5))
         .clipShape(RoundedRectangle(cornerRadius: 12))
     }
 }
