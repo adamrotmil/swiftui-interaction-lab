@@ -11,12 +11,12 @@ let package = Package(
     ],
     products: [
         .library(
-            name: "InteractionLab",
+            name: "InteractionLabLib",
             targets: ["InteractionLab"]
         )
     ],
     targets: [
-        .target(
+        .executableTarget(
             name: "InteractionLab",
             path: "InteractionLab"
         )
