@@ -84,7 +84,7 @@ private struct DraggableCardDemo: View {
                 .frame(height: 180)
         }
         .padding()
-        .background(Color(.systemGray6).opacity(0.5))
+        .background(Color(white: 0.95).opacity(0.5))
         .clipShape(RoundedRectangle(cornerRadius: 12))
     }
 }
@@ -143,7 +143,7 @@ private struct PinchToZoomDemo: View {
                 .foregroundStyle(.secondary)
         }
         .padding()
-        .background(Color(.systemGray6).opacity(0.5))
+        .background(Color(white: 0.95).opacity(0.5))
         .clipShape(RoundedRectangle(cornerRadius: 12))
     }
 }
@@ -224,7 +224,7 @@ private struct LongPressProgressDemo: View {
             .frame(maxWidth: .infinity)
         }
         .padding()
-        .background(Color(.systemGray6).opacity(0.5))
+        .background(Color(white: 0.95).opacity(0.5))
         .clipShape(RoundedRectangle(cornerRadius: 12))
     }
 }
