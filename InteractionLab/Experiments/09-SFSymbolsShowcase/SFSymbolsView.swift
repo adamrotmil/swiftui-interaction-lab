@@ -222,8 +222,12 @@ private struct SymbolEffectDemo: View {
                     Image(systemName: icon)
                         .symbolEffect(.scale.up, isActive: isActive)
                 case "Rotate":
-                    Image(systemName: icon)
-                        .symbolEffect(.rotate, isActive: isActive)
+                    if #available(macOS 15.0, iOS 18.0, *) {
+                        Image(systemName: icon)
+                            .symbolEffect(.rotate, isActive: isActive)
+                    } else {
+                        Image(systemName: icon)
+                    }
                 default:
                     Image(systemName: icon)
                 }
