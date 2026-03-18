@@ -65,7 +65,7 @@ struct SheetsAndModalsView: View {
             }
         }
         .padding()
-        .background(Color(.systemGray6).opacity(0.5))
+        .background(Color(white: 0.95).opacity(0.5))
         .clipShape(RoundedRectangle(cornerRadius: 12))
     }
 
@@ -92,7 +92,7 @@ struct SheetsAndModalsView: View {
             }
         }
         .padding()
-        .background(Color(.systemGray6).opacity(0.5))
+        .background(Color(white: 0.95).opacity(0.5))
         .clipShape(RoundedRectangle(cornerRadius: 12))
     }
 
@@ -131,7 +131,7 @@ struct SheetsAndModalsView: View {
             }
         }
         .padding()
-        .background(Color(.systemGray6).opacity(0.5))
+        .background(Color(white: 0.95).opacity(0.5))
         .clipShape(RoundedRectangle(cornerRadius: 12))
     }
 
@@ -165,7 +165,7 @@ struct SheetsAndModalsView: View {
             }
         }
         .padding()
-        .background(Color(.systemGray6).opacity(0.5))
+        .background(Color(white: 0.95).opacity(0.5))
         .clipShape(RoundedRectangle(cornerRadius: 12))
     }
 
@@ -200,7 +200,7 @@ struct SheetsAndModalsView: View {
             }
         }
         .padding()
-        .background(Color(.systemGray6).opacity(0.5))
+        .background(Color(white: 0.95).opacity(0.5))
         .clipShape(RoundedRectangle(cornerRadius: 12))
     }
 }
