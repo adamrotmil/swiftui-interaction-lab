@@ -114,7 +114,7 @@ struct SpringAnimationsView: View {
             .tint(.orange)
         }
         .padding()
-        .background(Color(.systemGray6).opacity(0.5))
+        .background(Color(white: 0.95).opacity(0.5))
         .clipShape(RoundedRectangle(cornerRadius: 12))
     }
 
@@ -179,7 +179,7 @@ struct SpringAnimationsView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 8))
         }
         .padding()
-        .background(Color(.systemGray6).opacity(0.5))
+        .background(Color(white: 0.95).opacity(0.5))
         .clipShape(RoundedRectangle(cornerRadius: 12))
     }
 
@@ -197,7 +197,7 @@ struct SpringAnimationsView: View {
             ComparisonRow()
         }
         .padding()
-        .background(Color(.systemGray6).opacity(0.5))
+        .background(Color(white: 0.95).opacity(0.5))
         .clipShape(RoundedRectangle(cornerRadius: 12))
     }
 
@@ -242,7 +242,7 @@ struct SpringAnimationsView: View {
             }
         }
         .padding()
-        .background(Color(.systemGray6).opacity(0.5))
+        .background(Color(white: 0.95).opacity(0.5))
         .clipShape(RoundedRectangle(cornerRadius: 12))
     }
 }
