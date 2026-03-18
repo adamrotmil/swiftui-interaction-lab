@@ -7,15 +7,15 @@ import SwiftUI
 /// View Transitions API, but it works at the framework level with no DOM diffing.
 struct MatchedGeometryView: View {
     @Namespace private var heroNamespace
-    @State private var selectedItem: GridItem?
+    @State private var selectedItem: DestinationItem?
 
-    let items: [GridItem] = [
-        GridItem(title: "Mountains", color: .blue, icon: "mountain.2.fill", subtitle: "Explore alpine terrain and rocky peaks"),
-        GridItem(title: "Ocean", color: .cyan, icon: "water.waves", subtitle: "Deep sea adventures and coastal views"),
-        GridItem(title: "Forest", color: .green, icon: "tree.fill", subtitle: "Dense woodland trails and wildlife"),
-        GridItem(title: "Desert", color: .orange, icon: "sun.max.fill", subtitle: "Vast dunes under endless skies"),
-        GridItem(title: "Arctic", color: .indigo, icon: "snowflake", subtitle: "Frozen landscapes and northern lights"),
-        GridItem(title: "Volcano", color: .red, icon: "flame.fill", subtitle: "Molten earth and dramatic eruptions"),
+    let items: [DestinationItem] = [
+        DestinationItem(title: "Mountains", color: .blue, icon: "mountain.2.fill", subtitle: "Explore alpine terrain and rocky peaks"),
+        DestinationItem(title: "Ocean", color: .cyan, icon: "water.waves", subtitle: "Deep sea adventures and coastal views"),
+        DestinationItem(title: "Forest", color: .green, icon: "tree.fill", subtitle: "Dense woodland trails and wildlife"),
+        DestinationItem(title: "Desert", color: .orange, icon: "sun.max.fill", subtitle: "Vast dunes under endless skies"),
+        DestinationItem(title: "Arctic", color: .indigo, icon: "snowflake", subtitle: "Frozen landscapes and northern lights"),
+        DestinationItem(title: "Volcano", color: .red, icon: "flame.fill", subtitle: "Molten earth and dramatic eruptions"),
     ]
 
     var body: some View {
@@ -67,7 +67,7 @@ struct MatchedGeometryView: View {
         .padding()
     }
 
-    private func gridCard(for item: GridItem) -> some View {
+    private func gridCard(for item: DestinationItem) -> some View {
         VStack(spacing: 12) {
             Image(systemName: item.icon)
                 .font(.system(size: 32))
@@ -89,7 +89,7 @@ struct MatchedGeometryView: View {
 
     // MARK: - Detail View
 
-    private func detailView(for item: GridItem) -> some View {
+    private func detailView(for item: DestinationItem) -> some View {
         VStack(spacing: 0) {
             // Hero header
             VStack(spacing: 16) {
@@ -149,9 +149,9 @@ struct MatchedGeometryView: View {
     }
 }
 
-// MARK: - Grid Item Model
+// MARK: - Destination Item Model
 
-fileprivate struct GridItem: Identifiable, Hashable {
+private struct DestinationItem: Identifiable, Hashable {
     let id = UUID()
     let title: String
     let color: Color
