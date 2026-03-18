@@ -87,9 +87,15 @@ struct SheetsAndModalsView: View {
             }
             .buttonStyle(.borderedProminent)
             .tint(.purple)
+            #if os(iOS)
             .fullScreenCover(isPresented: $showFullScreen) {
                 FullScreenContentView()
             }
+            #else
+            .sheet(isPresented: $showFullScreen) {
+                FullScreenContentView()
+            }
+            #endif
         }
         .padding()
         .background(Color(white: 0.95).opacity(0.5))
@@ -234,7 +240,9 @@ private struct SheetContentView: View {
                 .buttonStyle(.borderedProminent)
             }
             .navigationTitle("Sheet")
+            #if !os(macOS)
             .navigationBarTitleDisplayMode(.inline)
+            #endif
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Close") { dismiss() }
