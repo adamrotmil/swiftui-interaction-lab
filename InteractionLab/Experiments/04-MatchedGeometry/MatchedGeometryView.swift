@@ -151,7 +151,7 @@ struct MatchedGeometryView: View {
 
 // MARK: - Grid Item Model
 
-private struct GridItem: Identifiable, Hashable {
+fileprivate struct GridItem: Identifiable, Hashable {
     let id = UUID()
     let title: String
     let color: Color
