@@ -1,6 +1,8 @@
 import SwiftUI
 
+
 // MARK: - Experiment Model
+
 
 /// Represents a single experiment entry in the lab directory.
 struct Experiment: Identifiable, Hashable {
@@ -26,12 +28,14 @@ struct Experiment: Identifiable, Hashable {
     }
 }
 
+
 // MARK: - Experiment Registry
+
 
 /// Central registry of all experiments, ordered by learning progression.
 /// The learning order builds from foundational concepts (springs, gestures)
 /// toward advanced patterns (matched geometry, multi-window).
-let allExperiments: [Experiment] = [
+let allExperiments: [Experiment] = [Experiment] = [
     Experiment(
         id: 3,
         name: "Spring Animations",
@@ -129,12 +133,15 @@ let allExperiments: [Experiment] = [
         learningOrder: 12
     ),
 ]
+
+
 // MARK: - Lab Directory View
 
-/// The main hub that lists all available experiments.
-/// Uses NavigationSplitView on macOS/iPad and NavigationStack on iPhone.
+
+/// Main hub view displaying lesson chapters and experiment cards.
 struct LabDirectory: View {
     @State private var selectedExperiment: Experiment?
+    @State private var selectedLesson: Lesson?
     @State private var searchText = ""
 
     private var filteredExperiments: [Experiment] {
@@ -153,13 +160,15 @@ struct LabDirectory: View {
             experimentList
                 .navigationSplitViewColumnWidth(min: 280, ideal: 320)
         } detail: {
-            if let experiment = selectedExperiment {
+            if let lesson = selectedLesson {
+                lessonDestination(for: lesson)
+            } else if let experiment = selectedExperiment {
                 experimentDestination(for: experiment)
             } else {
                 ContentUnavailableView(
                     "Select an Experiment",
                     systemImage: "flask",
-                    description: Text("Choose an experiment from the sidebar to get started.")
+                    description: Text("Choose a lesson or experiment from the sidebar to get started.")
                 )
             }
         }
@@ -174,45 +183,117 @@ struct LabDirectory: View {
 
     private var experimentList: some View {
         ScrollView {
-            LazyVGrid(
-                columns: [GridItem(.adaptive(minimum: 280, maximum: 400), spacing: 16)],
-                spacing: 16
-            ) {
-                ForEach(filteredExperiments) { experiment in
-                    #if os(macOS)
-                    ExperimentCard(experiment: experiment)
-                        .onTapGesture { selectedExperiment = experiment }
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 12)
-                                .stroke(
-                                    selectedExperiment == experiment
-                                        ? Color.accentColor : Color.clear,
-                                    lineWidth: 2
+            VStack(alignment: .leading, spacing: 24) {
+                // MARK: Lessons Section
+                VStack(alignment: .leading, spacing: 12) {
+                    Label("Lessons", systemImage: "book.fill")
+                        .font(.title2)
+                        .fontWeight(.bold)
+                        .padding(.horizontal, 4)
+
+                    LazyVGrid(
+                        columns: [GridItem(.adaptive(minimum: 280, maximum: 400), spacing: 16)],
+                        spacing: 16
+                    ) {
+                        ForEach(allLessons) { lesson in
+                            #if os(macOS)
+                            LessonCard(lesson: lesson)
+                                .onTapGesture {
+                                    selectedExperiment = nil
+                                    selectedLesson = lesson
+                                }
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 14)
+                                        .stroke(
+                                            selectedLesson == lesson
+                                                ? lesson.accentColor : Color.clear,
+                                            lineWidth: 2
+                                        )
                                 )
-                        )
-                    #else
-                    NavigationLink(value: experiment) {
-                        ExperimentCard(experiment: experiment)
+                            #else
+                            NavigationLink(value: lesson) {
+                                LessonCard(lesson: lesson)
+                            }
+                            .buttonStyle(.plain)
+                            #endif
+                        }
                     }
-                    .buttonStyle(.plain)
-                    #endif
+                }
+
+                Divider()
+                    .padding(.vertical, 4)
+
+                // MARK: Experiments Section
+                VStack(alignment: .leading, spacing: 12) {
+                    Label("Experiments", systemImage: "flask")
+                        .font(.title2)
+                        .fontWeight(.bold)
+                        .padding(.horizontal, 4)
+
+                    LazyVGrid(
+                        columns: [GridItem(.adaptive(minimum: 280, maximum: 400), spacing: 16)],
+                        spacing: 16
+                    ) {
+                        ForEach(filteredExperiments) { experiment in
+                            #if os(macOS)
+                            ExperimentCard(experiment: experiment)
+                                .onTapGesture {
+                                    selectedLesson = nil
+                                    selectedExperiment = experiment
+                                }
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 14)
+                                        .stroke(
+                                            selectedExperiment == experiment
+                                                ? experiment.platform.color : Color.clear,
+                                            lineWidth: 2
+                                        )
+                                )
+                            #else
+                            NavigationLink(value: experiment) {
+                                ExperimentCard(experiment: experiment)
+                            }
+                            .buttonStyle(.plain)
+                            #endif
+                        }
+                    }
                 }
             }
             .padding()
         }
-        .navigationTitle("Interaction Lab")
         .searchable(text: $searchText, prompt: "Search experiments")
+        .navigationTitle("Interaction Lab")
         #if !os(macOS)
         .navigationDestination(for: Experiment.self) { experiment in
             experimentDestination(for: experiment)
         }
+        .navigationDestination(for: Lesson.self) { lesson in
+            lessonDestination(for: lesson)
+        }
         #endif
+    }
+
+    // MARK: - Lesson Routing
+
+    /// Routes each lesson to its chapter view.
+    @ViewBuilder
+    private func lessonDestination(for lesson: Lesson) -> some View {
+        switch lesson.id {
+        case 1:
+            Chapter01_SpringAnimations()
+        case 2:
+            Chapter02_Gestures()
+        case 3:
+            Chapter03_SFSymbols()
+        default:
+            Text("Unknown lesson")
+        }
     }
 
     // MARK: - Experiment Routing
 
-    /// Routes each experiment to its view, wrapped in LabGuideView when
-    /// guide content is available.
+    /// Routes each experiment to its view, wrapped in LabGuideView
+    /// when guide content is available.
     @ViewBuilder
     private func experimentDestination(for experiment: Experiment) -> some View {
         if let guideData = guide(forExperimentID: experiment.id) {
