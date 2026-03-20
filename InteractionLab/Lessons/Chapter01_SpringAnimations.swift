@@ -160,7 +160,7 @@ private struct Step3_MagicNumbers: View {
             )
 
             CodeBlockView(
-                code: ".spring(response: \(String(format: \"%.2f\", response)), dampingFraction: \(String(format: \"%.2f\", damping)))",
+                code: ".spring(response: \(String(format: "%.2f", response)), dampingFraction: \(String(format: "%.2f", damping)))",
                 caption: "Your current spring configuration"
             )
         }
@@ -325,7 +325,7 @@ private struct Step6_Challenge: View {
                 .font(.callout)
                 .fontWeight(.medium)
             Spacer()
-            Text("response: \(String(format: \"%.2f\", response)), damping: \(String(format: \"%.2f\", damping))")
+            Text("response: \(String(format: "%.2f", response)), damping: \(String(format: "%.2f", damping))")
                 .font(.system(.caption, design: .monospaced))
                 .foregroundStyle(.secondary)
         }
