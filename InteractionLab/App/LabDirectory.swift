@@ -279,8 +279,8 @@ struct LabDirectory: View {
         case 2: Chapter02_Gestures()
         case 3: Chapter03_SFSymbols()
         case 4: Chapter04_Navigation()
-        case 5: Chapter05_SheetsAndModals()
-        case 6: Chapter06_TabViewAndPaging()
+        case 5: Chapter05_SheetsModals()
+        case 6: Chapter06_TabViewPaging()
         default: Text("Unknown lesson")
         }
     }
