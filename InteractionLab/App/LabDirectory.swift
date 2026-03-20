@@ -1,8 +1,6 @@
 import SwiftUI
 
-
 // MARK: - Experiment Model
-
 
 /// Represents a single experiment entry in the lab directory.
 struct Experiment: Identifiable, Hashable {
@@ -28,14 +26,12 @@ struct Experiment: Identifiable, Hashable {
     }
 }
 
-
 // MARK: - Experiment Registry
-
 
 /// Central registry of all experiments, ordered by learning progression.
 /// The learning order builds from foundational concepts (springs, gestures)
 /// toward advanced patterns (matched geometry, multi-window).
-let allExperiments: [Experiment] = [Experiment] = [
+let allExperiments: [Experiment] = [
     Experiment(
         id: 3,
         name: "Spring Animations",
@@ -134,9 +130,7 @@ let allExperiments: [Experiment] = [Experiment] = [
     ),
 ]
 
-
 // MARK: - Lab Directory View
-
 
 /// Main hub view displaying lesson chapters and experiment cards.
 struct LabDirectory: View {
@@ -206,7 +200,8 @@ struct LabDirectory: View {
                                     RoundedRectangle(cornerRadius: 14)
                                         .stroke(
                                             selectedLesson == lesson
-                                                ? lesson.accentColor : Color.clear,
+                                                ? lesson.accentColor
+                                                : Color.clear,
                                             lineWidth: 2
                                         )
                                 )
@@ -245,7 +240,8 @@ struct LabDirectory: View {
                                     RoundedRectangle(cornerRadius: 14)
                                         .stroke(
                                             selectedExperiment == experiment
-                                                ? experiment.platform.color : Color.clear,
+                                                ? experiment.platform.color
+                                                : Color.clear,
                                             lineWidth: 2
                                         )
                                 )
@@ -279,14 +275,13 @@ struct LabDirectory: View {
     @ViewBuilder
     private func lessonDestination(for lesson: Lesson) -> some View {
         switch lesson.id {
-        case 1:
-            Chapter01_SpringAnimations()
-        case 2:
-            Chapter02_Gestures()
-        case 3:
-            Chapter03_SFSymbols()
-        default:
-            Text("Unknown lesson")
+        case 1: Chapter01_SpringAnimations()
+        case 2: Chapter02_Gestures()
+        case 3: Chapter03_SFSymbols()
+        case 4: Chapter04_Navigation()
+        case 5: Chapter05_SheetsAndModals()
+        case 6: Chapter06_TabViewAndPaging()
+        default: Text("Unknown lesson")
         }
     }
 
