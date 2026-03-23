@@ -281,6 +281,8 @@ struct LabDirectory: View {
         case 4: Chapter04_Navigation()
         case 5: Chapter05_SheetsModals()
         case 6: Chapter06_TabViewPaging()
+        case 7: Chapter07_CommandPalette()
+        case 8: Chapter08_CalmDashboard()
         default: Text("Unknown lesson")
         }
     }

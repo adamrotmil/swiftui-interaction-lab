@@ -78,6 +78,20 @@ let allLessons: [Lesson] = [
         icon: "rectangle.split.3x1",
         accentColor: .teal
     ),
+    Lesson(
+        id: 7,
+        title: "Command Palette",
+        subtitle: "Raycast’s Power-User Pattern",
+        icon: "magnifyingglass.circle",
+        accentColor: .cyan
+    ),
+    Lesson(
+        id: 8,
+        title: "Calm Dashboard",
+        subtitle: "Linear’s Low-Noise Data Design",
+        icon: "chart.line.text.clipboard",
+        accentColor: .indigo
+    ),
 ]
 
 // MARK: - Lesson View Container
