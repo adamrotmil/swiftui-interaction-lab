@@ -234,12 +234,12 @@ private struct SymbolStep4_Effects: View {
                 }
                 .onTapGesture { isActive.toggle() }
 
-                // Wiggle
-                effectCard("Wiggle", color: .orange) {
+                // Bounce (replaces .wiggle which requires macOS 15+)
+                effectCard("Bounce", color: .orange) {
                     Image(systemName: "bell.fill")
                         .font(.system(size: 36))
                         .foregroundStyle(.orange)
-                        .symbolEffect(.wiggle, value: wiggleCount)
+                        .symbolEffect(.bounce, value: wiggleCount)
                 }
                 .onTapGesture { wiggleCount += 1 }
             }

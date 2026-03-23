@@ -152,9 +152,15 @@ private struct Step4_FullScreenCover: View {
             }
             .buttonStyle(.borderedProminent)
             .tint(.orange)
+            #if os(iOS)
             .fullScreenCover(isPresented: $showCover) {
                 FullScreenContent(dismiss: { showCover = false })
             }
+            #else
+            .sheet(isPresented: $showCover) {
+                FullScreenContent(dismiss: { showCover = false })
+            }
+            #endif
 
             CodeBlockView(
                 code: """
