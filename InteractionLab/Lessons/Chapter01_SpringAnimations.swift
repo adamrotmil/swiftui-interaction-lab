@@ -83,6 +83,9 @@ private struct Step3_MagicNumbers: View {
     @State private var damping: Double = 0.6
     @State private var animate = false
 
+    private var formattedResponse: String { String(format: "%.2f", response) }
+    private var formattedDamping: String { String(format: "%.2f", damping) }
+
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
             LessonText("Every spring in SwiftUI is defined by two parameters. Play with the sliders to build intuition for what they do.")
@@ -160,7 +163,7 @@ private struct Step3_MagicNumbers: View {
             )
 
             CodeBlockView(
-                code: ".spring(response: \(String(format: "%.2f", response)), dampingFraction: \(String(format: "%.2f", damping)))",
+                code: ".spring(response: \(formattedResponse), dampingFraction: \(formattedDamping))",
                 caption: "Your current spring configuration"
             )
         }
@@ -320,12 +323,14 @@ private struct Step6_Challenge: View {
     }
 
     private func springPreset(_ name: String, response: Double, damping: Double) -> some View {
-        HStack {
+        let r = String(format: "%.2f", response)
+        let d = String(format: "%.2f", damping)
+        return HStack {
             Text(name)
                 .font(.callout)
                 .fontWeight(.medium)
             Spacer()
-            Text("response: \(String(format: "%.2f", response)), damping: \(String(format: "%.2f", damping))")
+            Text("response: \(r), damping: \(d)")
                 .font(.system(.caption, design: .monospaced))
                 .foregroundStyle(.secondary)
         }
